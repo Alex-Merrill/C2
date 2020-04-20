@@ -38,14 +38,14 @@ public class Huffman {
 		//sort trees by weight in ascending order
 		trees = bubbleSort(trees);
 
-
+		System.out.println(trees.get(0).weight);
 		//maybe do this:
 		// ArrayList<BinaryTree> finalTree = constructTree(trees);
 		//and put this stuff in constructTree()
-		while(trees.size() > 0) {
-
-
-		}
+		// while(trees.size() > 0) {
+		//
+		//
+		// }
 
 
 
