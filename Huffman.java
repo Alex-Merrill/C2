@@ -38,20 +38,50 @@ public class Huffman {
 		//sort trees by weight in ascending order
 		trees = bubbleSort(trees);
 
-		System.out.println(trees.get(0).weight);
-		//maybe do this:
-		// ArrayList<BinaryTree> finalTree = constructTree(trees);
-		//and put this stuff in constructTree()
-		// while(trees.size() > 0) {
-		//
-		//
-		// }
+		//merges two smallest trees together until there is only one tree
+		while(trees.size() > 1) {
+			BinaryTree t1 = trees.remove(0);
+			BinaryTree t2 = trees.remove(0);
+			BinaryTree newTree = BinaryTree.mergeTrees(t1, t2);
+			trees.add(newTree);
+			trees = bubbleSort(trees);
+		}
 
+		BinaryTree finalTree = trees.get(0);
+		finalTree.printLevelOrder();
 
+		//create dictionary for set of letters
+		Map<String, String> dictionary =  new HashMap<String, String>();
+		for(int i = 0; i < message.length(); i++) {
+			ArrayList<String> track = new ArrayList<String>();
+			String currLet = String.valueOf(message.charAt(i));
+			finalTree.search(finalTree.root, currLet, track);
+			String code = "";
+			for(int j = 0; j < track.size(); j++) {
+				code += track.get(j);
+			}
+			dictionary.put(currLet, code);
+		}
 
-		String bString = "Hi";
+		//print dictionary
+		System.out.println("\nDictionary:");
+		for(Map.Entry mapElement: dictionary.entrySet()) {
+			String key = (String) mapElement.getKey();
+			String val = (String) mapElement.getValue();
+			System.out.println(key + " - " +  val);
+		}
 
-		return bString;
+		//encode message and prints it
+		System.out.println("\nMessage Encoding:");
+		String encoding = "";
+		for(int i = 0; i < message.length(); i++) {
+			String currLet = String.valueOf(message.charAt(i));
+			String code = dictionary.get(currLet);
+			encoding += code;
+		}
+		System.out.println(encoding);
+
+		return encoding;
 
 	}
 
@@ -97,6 +127,12 @@ public class Huffman {
 					temp = trees.get(i);
 					trees.set(i, trees.get(i+1));
 					trees.set(i+1, temp);
+					sorted = false;
+				}
+				if(trees.get(i).weight.compareTo(trees.get(i+1).weight) == 0 && trees.get(i).height(trees.get(i).root) < trees.get(i+1).height(trees.get(i+1).root)) {
+					temp = trees.get(i);
+					trees.set(i, trees.get(i+1));
+					trees.set (i+1, temp);
 					sorted = false;
 				}
 			}
