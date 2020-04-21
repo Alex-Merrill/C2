@@ -14,14 +14,24 @@ public class Huffman {
 
 
 	public static void main(String[] args) throws IOException{
+		//concatenates all args to single string
+		String message = "";
+		for(int i = 0; i < args.length; i++) {
+			if(args.length > 1 && i != args.length-1) {
+				message += args[i] + " ";
+			} else {
+				message += args[i];
+			}
+		}
+
 		//Runs encode
-		encode(args[0]);
+		encode(message);
 	}
 
+	// Uses Huffman's algorithm to encode message into binary
+	// Also prints a dictionary.
 	public static String encode(String message){
-		// Uses Huffman's algorithm to encode message into binary
-		// Also prints a dictionary.
-
+		//creates map of letters in message and their probabilities
 		Map<String, Double> probs = getProbMap(message);
 
 		//create trees for each char and store them in trees arraylist
