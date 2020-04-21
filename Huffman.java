@@ -14,11 +14,8 @@ public class Huffman {
 
 
 	public static void main(String[] args) throws IOException{
-
 		//Runs encode
 		encode(args[0]);
-
-
 	}
 
 	public static String encode(String message){
@@ -47,8 +44,8 @@ public class Huffman {
 			trees = bubbleSort(trees);
 		}
 
+		//Set finalTree equal to merged trees
 		BinaryTree finalTree = trees.get(0);
-		finalTree.printLevelOrder();
 
 		//create dictionary for set of letters
 		Map<String, String> dictionary =  new HashMap<String, String>();
@@ -82,9 +79,9 @@ public class Huffman {
 		System.out.println(encoding);
 
 		return encoding;
-
 	}
 
+	//creates map of letters and probabilities
 	public static Map<String, Double> getProbMap(String message) {
 		//shortcut for message.length()
 		int mLen = message.length();
@@ -117,6 +114,7 @@ public class Huffman {
 		return probs;
 	}
 
+	//bubblesort
 	public static ArrayList<BinaryTree> bubbleSort(ArrayList<BinaryTree> trees) {
 		boolean sorted = false;
 		BinaryTree temp;
