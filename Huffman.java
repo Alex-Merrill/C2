@@ -3,15 +3,11 @@
 * Implements Huffman's binary encoding algorithm
 */
 
-
-
 import java.io.IOException;
 import java.util.*;
 import java.lang.Double;
 
-
 public class Huffman {
-
 
 	public static void main(String[] args) throws IOException{
 		//concatenates all args to single string
@@ -148,6 +144,5 @@ public class Huffman {
 
 		return trees;
 	}
-
 
 }
