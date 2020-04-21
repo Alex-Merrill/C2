@@ -82,7 +82,7 @@ public class Huffman {
 			String code = dictionary.get(currLet);
 			encoding += code;
 		}
-		System.out.println(encoding);
+		System.out.println(encoding + "\n");
 
 		return encoding;
 	}
