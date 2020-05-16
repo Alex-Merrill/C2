@@ -20,6 +20,11 @@ public class Huffman {
 			}
 		}
 
+		if(message == "") {
+			System.out.println("Please enter a string to encode.");
+			return;
+		}
+
 		//Runs encode
 		encode(message);
 	}
